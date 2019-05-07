@@ -1,0 +1,66 @@
+{
+    "name": "newdatabase",
+    "displayName": "New Database",
+    "description": "Adds a 'New Database' command. Right-click on the Databases for a connection in Object Explorer, or run 'New Database' from the command palette",
+    "version": "0.1.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/kevcunnane/azuredatastudio-newdatabase"
+    },
+    "icon": "images/sqlserver.png",
+    "publisher": "kevcunnane",
+    "engines": {
+        "vscode": "^1.28.0",
+        "sqlops": "*"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:newdatabase.createdb"
+    ],
+    "main": "./out/extension",
+    "contributes": {
+        "commands": [
+            {
+                "command": "newdatabase.createdb",
+                "title": "New Database"
+            }
+        ],
+        "menus": {
+            "objectExplorer/item/context": [
+                {
+                    "command": "newdatabase.createdb",
+                    "when": "connectionProvider == MSSQL && nodeType && nodeType == Folder && nodeLabel=~/^Databases$/",
+                    "group": "1data1"
+                }
+            ]
+        },
+        "keybindings": [
+            {
+                "command": "newdatabase.createdb",
+                "key": "Ctrl+Shift+d b"
+            }
+        ]
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "postinstall": "node ./node_modules/vscode/bin/install && node ./node_modules/sqlops/bin/install",
+        "test": "npm run compile && node ./node_modules/vscode/bin/test",
+        "updatesqlops": "curl -o ./typings/sqlops.proposed.d.ts https://raw.githubusercontent.com/Microsoft/azuredatastudio/master/src/sql/sqlops.proposed.d.ts"
+    },
+    "devDependencies": {
+        "@types/mocha": "^2.2.42",
+        "@types/node": "^7.0.43",
+        "event-stream": "3.3.4",
+        "sqlops": "github:anthonydresser/sqlops-extension-sqlops",
+        "tslint": "^5.8.0",
+        "typescript": "^2.6.1",
+        "vscode": "^1.1.6"
+    },
+    "dependencies": {
+        "azuredatastudio-dmpwrapper": "^0.5.0"
+    }
+}
