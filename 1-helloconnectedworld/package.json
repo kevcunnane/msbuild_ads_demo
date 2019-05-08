@@ -16,7 +16,7 @@
     ],
     "main": "./out/extension",
     "contributes": {
-        "commands": [   
+        "commands": [
             {
                 "command": "extension.showCurrentConnection",
                 "title": "Show Current Connection"
@@ -33,7 +33,7 @@
     "devDependencies": {
         "typescript": "^2.6.1",
         "vscode": "^1.1.6",
-        "sqlops": "github:anthonydresser/sqlops-extension-sqlops",
+        "sqlops": "github:anthonydresser/sqlops-extension-sqlops#1.1.14",
         "tslint": "^5.8.0",
         "@types/node": "^7.0.43",
         "@types/mocha": "^2.2.42"
