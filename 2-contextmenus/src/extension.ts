@@ -17,8 +17,9 @@ export function activate(context: vscode.ExtensionContext) {
             // We launched from the command palette
             // Note: in the future all APIs will return IConnectionProfile!
             let connection: sqlops.connection.Connection = await sqlops.connection.getCurrentConnection();
-            let serverName = connection.options['server'];
-            let dbName = connection.options['database'] || '<Default>';
+            
+            let serverName = connection && connection.options['server'];
+            let dbName = connection && connection.options['database'] || '<Default>';
 
             let message = connection ? 
                 `Using ${serverName}:${dbName}`
