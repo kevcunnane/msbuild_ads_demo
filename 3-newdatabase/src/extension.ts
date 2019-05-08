@@ -39,7 +39,10 @@ async function createDatabase(context: sqlops.ObjectExplorerContext): Promise<vo
     }
 
     // Prompt the user for a new database name
-    let dbName = await vscode.window.showInputBox({ prompt: `Name of database to create on server ${connection.options['server']}`, validateInput: (value) => value && value.length > 124 ? 'Must be 124 chars or less' : undefined});
+    let dbName = await vscode.window.showInputBox({
+        prompt: `Name of database to create on server ${connection.options['server']}`,
+        validateInput: (value) => value && value.length > 124 ? 'Must be 124 chars or less' : undefined
+    });
     if (!dbName) {
         return;
     }
